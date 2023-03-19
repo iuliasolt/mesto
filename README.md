@@ -1,5 +1,5 @@
 # Проект: Место
-GitHub Pages:
+GitHub Pages: https://iuliasolt.github.io/mesto/
 ### Обзор
 * Описание
 * Figma
