@@ -9,6 +9,5 @@
     right: 0;
     display: flex;
     visibility: hidden;
-    position: absolute;
     background-color: rgba(0, 0, 0, 0.6);
 }
