@@ -22,6 +22,5 @@
   .profile {
     width: calc(100% - 2 * 19px);
     margin-bottom: 38px;
-    padding: 0;
   }
 }
