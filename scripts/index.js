@@ -128,6 +128,7 @@ const handleAddCardSubmit = (event) => {
     };
 
     renderCardElement(createCardElement(cardData));
+    closePopup(popupCardAdd);
 };
 
 closeAddCard.addEventListener("click", () => {
