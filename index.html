@@ -15,7 +15,7 @@
          <main class="content">
             <section class="profile">
                <div class="profile__avatar">
-                  <img src="./images/Zhak-Iv-Kusto.jpg" class="profile__image" alt="Портрет Жак-Ив Кусто">
+                  <img src="./images/zhak-iv-kusto.jpg" class="profile__image" alt="Портрет Жак-Ив Кусто">
                </div>
                <div class="profile__info">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -24,49 +24,7 @@
                </div>
                <button type="button" class="profile__add-button" aria-label="Кнопка: Добавить"></button>
             </section>
-            <section class="elements" aria-label="Секция с фотографиями">
-               <article class="element">
-                  <img src="./images/Bariloche.jpg" class="element__image" alt="Барилоче">
-                  <div class="element__item">
-                     <h2 class="element__name">Барилоче</h2>
-                     <button type="button" class="element__like" aria-label="Кнопка лайка"></button>
-                  </div>
-               </article>
-               <article class="element">
-                  <img src="./images/Hallstatt.jpg" class="element__image" alt="Халльштатт">
-                  <div class="element__item">
-                     <h2 class="element__name">Халльштатт</h2>
-                     <button type="button" class="element__like" aria-label="Кнопка лайка"></button>
-                  </div>
-               </article>
-               <article class="element">
-                  <img src="./images/Kyoto.jpg" class="element__image" alt="Киото">
-                  <div class="element__item">
-                     <h2 class="element__name">Киото</h2>
-                     <button type="button" class="element__like" aria-label="Кнопка лайка"></button>
-                  </div>
-               </article>
-               <article class="element">
-                  <img src="./images/Lissabon.jpg" class="element__image" alt="Лиссабон">
-                  <div class="element__item">
-                     <h2 class="element__name">Лиссабон</h2>
-                     <button type="button" class="element__like" aria-label="Кнопка лайка"></button>
-                  </div>
-               </article>
-               <article class="element">
-                  <img src="./images/Positano.jpg" class="element__image" alt="Позитано">
-                  <div class="element__item">
-                     <h2 class="element__name">Позитано</h2>
-                     <button type="button" class="element__like" aria-label="Кнопка лайка"></button>
-                  </div>
-               </article>
-               <article class="element">
-                  <img src="./images/Veneza.jpg" class="element__image" alt="Венеция">
-                  <div class="element__item">
-                     <h2 class="element__name">Венеция</h2>
-                     <button type="button" class="element__like" aria-label="Кнопка лайка"></button>
-                  </div>
-               </article>
+            <section class="cards" aria-label="Секция с фотографиями">
             </section>
          </main>
          <footer class="footer">
@@ -74,16 +32,48 @@
          </footer>
          <div class="popup popup_type_more-info">
             <div class="popup__container">
-               <button type="button" class="popup__close" aria-label="Кнопка закрыть"></button>
+               <button type="button" class="popup__close popup__close_type_profile" aria-label="Кнопка закрыть"></button>
                <h2 class="popup__info">Редактировать профиль</h2>
-               <form name="profileEdit" class="popup__form">
+               <form name="profileEdit" class="popup__form popup__form_type_profile">
                   <input type="text" name="username" class="popup__text popup__text_type_name" placeholder="Жак-Ив-Кусто">
-                  <input type="text" name="description" class="popup__text popup__text_type_job" placeholder="Исследователь океана">
+                  <input type="text" name="description" class="popup__text popup__text_type_job"
+                     placeholder="Исследователь океана">
                   <button type="submit" class="popup__save" aria-label="Кнопка сохранить">Сохранить</button>
                </form>
             </div>
          </div>
+         <div class="popup popup_type_card_add">
+            <div class="popup__container popup__container_add">
+               <button type="button" class="popup__close popup__close_type_add" aria-label="Кнопка закрыть"></button>
+               <h2 class="popup__info">Новое место</h2>
+               <form name="profileAdd" class="popup__form popup__form_type_add">
+                  <input type="text" name="username" class="popup__text popup__text_type_title" placeholder="Название">
+                  <input type="text" name="description" class="popup__text popup__text_type_link"
+                     placeholder="Ссылка на картинку">
+                  <button type="submit" class="popup__save popup__save_type_add" aria-label="Кнопка создать">Создать</button>
+               </form>
+            </div>
+         </div>
       </div>
+      <div class="popup popup_type_image">
+         <div class="popup__card-container">
+            <div class="popup__close popup__close_image"></div>
+            <img class="popup__image"  src="#" alt="Фото">
+            <p class="popup__paragraph"></p>
+         </div>
+      </div>
+      <!--Шаблон для карточек-->
+      <template id="card-template">
+         <article class="card">
+            <button type="button" class="card__trash" aria-label="Удаление"></button>
+            <img src="#" class="card__image" alt="Фото">
+            <div class="card__item">
+               <h2 class="card__name"></h2>
+               <button type="button" class="card__like" aria-label="Кнопка лайка"></button>
+            </div>
+         </article>
+      </template>
+      <script src="./scripts/cards.js"></script>
       <script src="./scripts/index.js"></script>
    </body>
 </html>
