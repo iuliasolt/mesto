@@ -23,12 +23,32 @@ const linkInput = formAddCard.querySelector(".popup__text_type_link");
 /*Функция открытия popup'ов*/
 const openPopup = (popup) => {
     popup.classList.add("popup_opened");
+    document.addEventListener("keydown", handleEscape)
 };
 
 /*Функция закрытия popup'ов*/
 const closePopup = (popup) => {
     popup.classList.remove("popup_opened");
+    document.removeEventListener("keydown", handleEscape)
 };
+
+/*Закртытие popup'ов* на Esc*/
+function handleEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector(".popup_opened"));
+  }
+}
+
+/*Закрытие на overlay*/
+function handleOverlay(evt) {
+  if (evt.target.classList.contains("popup")) {
+    closePopup(evt.target);
+  }
+}
+
+popupCardAdd.addEventListener("click", handleOverlay);
+popupProfile.addEventListener("click", handleOverlay);
+popupPhoto.addEventListener("click", handleOverlay);
 
 /*Кнопка редактирования профиля edit-button*/
 buttonEditProfile.addEventListener("click", () => {
@@ -127,3 +147,5 @@ cardCloseAdd.addEventListener("click", () => {
 
 /*Кнопка добавления новой карточки*/
 formAddCard.addEventListener("submit", handleAddCardSubmit);
+
+

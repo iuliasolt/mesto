@@ -10,8 +10,8 @@
   display: flex;
   visibility: hidden;
   opacity: 0;
-  transition:  opacity 0.5s ease, visibility 0.3s ease;
+  transition: opacity 0.5s ease, visibility 0.3s ease;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
