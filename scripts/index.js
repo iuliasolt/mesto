@@ -13,6 +13,7 @@ const buttonAdd = document.querySelector(".profile__add-button");
 const formAddCard = document.querySelector(".popup__form_type_add");
 const cardCloseAdd = document.querySelector(".popup__close_type_add");
 const popupPhoto = document.querySelector(".popup_type_image");
+const addCardButtonSave = popupCardAdd.querySelector(".popup__save");
 const popupText = document.querySelector(".popup__text");
 const popupImage = document.querySelector(".popup__image");
 const popupParagraph = document.querySelector(".popup__paragraph");
@@ -46,9 +47,13 @@ function handleOverlay(evt) {
   }
 }
 
-popupCardAdd.addEventListener("click", handleOverlay);
+/*popupCardAdd.addEventListener("click", handleOverlay);
 popupProfile.addEventListener("click", handleOverlay);
-popupPhoto.addEventListener("click", handleOverlay);
+popupPhoto.addEventListener("click", handleOverlay);*/
+
+document.querySelectorAll('.popup').forEach( popup => {
+  popup.addEventListener('mousedown',  handleOverlay );
+});
 
 /*Кнопка редактирования профиля edit-button*/
 buttonEditProfile.addEventListener("click", () => {
@@ -139,6 +144,8 @@ const handleAddCardSubmit = (event) => {
     renderCardElement(createCardElement(cardData));
     closePopup(popupCardAdd);
     formAddCard.reset();
+    addCardButtonSave.classList.add('popup__save_disabled')
+    addCardButtonSave.disabled = true;
 };
 
 cardCloseAdd.addEventListener("click", () => {

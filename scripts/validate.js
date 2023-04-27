@@ -52,9 +52,6 @@ const enableValidation = ({formSelector, ...rest}) => {
   const form = Array.from(document.querySelectorAll(formSelector));                           //Получаем перечень всех элементов документа с классом .popup__form.
   form.forEach((formElement) => {                                                             //Перебираем все найденные формы.
       setEventListeners(formElement, rest);
-      formElement.addEventListener("submit", function (evt) {
-          evt.preventDefault();
-      });
   });
 };
 
