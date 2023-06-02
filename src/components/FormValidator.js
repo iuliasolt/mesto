@@ -1,6 +1,5 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(enableValidationConfig, formElement) {
-      this._formSelector = enableValidationConfig.formSelector;
       this._inputSelector = enableValidationConfig.inputSelector;
       this._submitButtonSelector = enableValidationConfig.submitButtonSelector;
       this._inactiveButtonClass = enableValidationConfig.inactiveButtonClass;
@@ -64,8 +63,6 @@ export class FormValidator {
   }
 
   enableValidation() {
-      /*const formElement = this._formElement;
-this._setEventListeners(formElement);*/
       this._formElement.addEventListener("submit", (event) => {
           event.preventDefault();
       });
@@ -74,13 +71,3 @@ this._setEventListeners(formElement);*/
   }
 }
 
-export const enableValidationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__text",
-  submitButtonSelector: ".popup__save",
-  inactiveButtonClass: "popup__save_disabled",
-  inputErrorClass: "popup__text_type_invalid",
-  errorClass: "popup__error-message",
-};
-
-//export default FormValidator;

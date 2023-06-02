@@ -1,6 +1,3 @@
-//import {/*popupPhoto,*/ /*popupImage, popupParagraph,*/ cardTemplate } from "./index.js";
-const cardTemplate = document.getElementById("card-template");
-
 export default class Card {
     constructor({ data, handleCardClick }, template) {
         this._template = template;
@@ -35,12 +32,18 @@ export default class Card {
         this._likeButton.classList.toggle("card__like_active");
     }
 
+
     _getTemplate() {
         // забираем разметку из HTML и клонируем элемент
-        const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+        const cardElement = document
+        .querySelector(this._template)
+        .content
+        .querySelector(".card")
+        .cloneNode(true);
         // вернём DOM-элемент карточки
 
         return cardElement;
+
     }
 
     generate() {
