@@ -3,7 +3,7 @@ export default class Section {
       //объявим класс, который в конструктор принимает items и renderer
       this._items = items;
       this._renderer = renderer;
-      this._container = selector;
+      this._container = document.querySelector(selector);
   }
 
   rendererItems() {

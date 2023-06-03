@@ -22,8 +22,8 @@ const linkInput = formAddCard.querySelector(".popup__text_type_link");
 const popupPhoto = new PopupWithImage(".popup_type_image");
 
 const userInfo = new UserInfo({
-    changeName: ".profile__name",
-    changeJob: ".profile__job",
+    changeNameSelector: ".profile__name",
+    changeJobSelector: ".profile__job",
 });
 
 
@@ -47,7 +47,7 @@ const section = new Section(
         items: initialCards,
         renderer: renderCard,
     },
-    cardGallery
+    ".cards"
 );
 
 function renderCard(cardData) {
