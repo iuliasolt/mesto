@@ -1,14 +1,12 @@
 export default class Section {
-  constructor({ items, renderer }, selector) {
-      //объявим класс, который в конструктор принимает items и renderer
-      this._items = items;
+  constructor(renderer, selector) {
       this._renderer = renderer;
       this._container = document.querySelector(selector);
   }
 
-  rendererItems() {
+  rendererItems(items) {
       //Содержит публичный метод, который отвечает за отрисовку всех элементов.
-      this._items.forEach((item) => {
+      items.forEach((item) => {
           this._renderer(item);
       });
   }

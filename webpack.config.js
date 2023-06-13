@@ -24,7 +24,7 @@ module.exports = {
                 use: "babel-loader",
                 // исключает папку node_modules, файлы в ней обрабатывать не нужно
                 exclude: "/node_modules/",
-            },
+             },
             {
                 test: /\.css$/,
                 use: [

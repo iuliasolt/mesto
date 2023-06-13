@@ -1,6 +1,5 @@
 .card__trash {
   background: url(../../../images/trash.svg) no-repeat;
-  /*background-size: 18px 19px;*/
   min-width: 18px;
   min-height: 19px;
   cursor: pointer;

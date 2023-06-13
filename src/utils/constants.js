@@ -5,8 +5,7 @@ export const enableValidationConfig = {
   inactiveButtonClass: "popup__save_disabled",
   inputErrorClass: "popup__text_type_invalid",
   errorClass: "popup__error-message",
-}
-
+};
 
 export const initialCards = [
   {
@@ -34,3 +33,22 @@ export const initialCards = [
       link: "https://images.unsplash.com/photo-1673957216012-120e1397db41?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
   },
 ];
+
+const popupProfile = document.querySelector(".popup_type_more-info");
+const popupCardAdd = document.querySelector(".popup_type_card-add");
+const nameEdit = document.querySelector(".popup__text_type_name");
+const jobEdit = document.querySelector(".popup__text_type_job");
+const buttonEditProfile = document.querySelector(".profile__edit-button");
+const buttonAdd = document.querySelector(".profile__add-button");
+const cardGallery = document.querySelector(".cards");
+const formAddCard = document.querySelector(".popup__form_type_add");
+const formProfile = document.querySelector(".popup__form_type_profile");
+const nameInput = formAddCard.querySelector(".popup__text_type_title");
+const linkInput = formAddCard.querySelector(".popup__text_type_link");
+const profileEditAvatar = document.querySelector(".profile__edit-avatar");
+//const profileAvatar = document.querySelector(".profile__image");
+const popupAvatar = document.querySelector(".popup_type_avatar");
+
+//const popupDeleteCard = document.querySelector(".popup_type_delete-card");
+
+export { profileEditAvatar, popupProfile, popupCardAdd, formAddCard, nameEdit, jobEdit, buttonEditProfile, buttonAdd, cardGallery, formProfile, nameInput, linkInput, popupAvatar };
