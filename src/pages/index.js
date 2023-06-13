@@ -108,7 +108,7 @@ const popupNewAvatar = new PopupWithForm(".popup_type_avatar", {
                 console.log(`setUserAvatar - ошибка: ${err}`);
             })
             .finally(() => {
-                loading(".popup_type_avatar", "Сохранить");
+                loading("Сохранить");
             });
     },
 });
