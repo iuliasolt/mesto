@@ -139,7 +139,7 @@ const popupAddCard = new PopupWithForm(".popup_type_card-add", {
 
             .catch((err) => console.log(`addNewCard - ошибка: ${err}`))
             .finally(() => {
-                loading(".popup__form_type_add", "Сохранить");
+                loading("Сохранить");
             });
     },
 });
