@@ -21,13 +21,6 @@ const api = new Api({
     },
 });
 
-
-/*Замена текста на загрузку*/
-function loading(text) {
-  const buttonSave = document.querySelector(".popup__save");
-  buttonSave.textContent = text;
-}
-
 /*Рендер и отображение карточек на странице*/
 Promise.all([api.getDataUser(), api.getInitialCards()])
     .then((data) => {
@@ -45,15 +38,21 @@ Promise.all([api.getDataUser(), api.getInitialCards()])
 
 /*Удаление карточек*/
 const popupWithConfirmation = new PopupWithConfirmation(".popup_type_delete-card", {
-    deleteCard: (cardId) =>
-        api
-            .deleteCard(cardId)
-            .catch((err) => {
-                console.log(`deleteCard - Не удалось удалить карточку: ${err.status}`);
+    deleteCard: (id, card) => {
+        popupWithConfirmation.renderLoading(true, "Удаление...");
+        api.deleteCard(id)
+            .then(() => {
+                card.deleteCard();
+                popupWithConfirmation.close();
             })
+            .catch((err) => {
+                console.log(`deleteCard - ${err.status}`);
+            })
+
             .finally(() => {
-                loading(".popup_type_delete-card", "Карточка удалена");
-            }),
+                popupWithConfirmation.renderLoading(false);
+            });
+    },
 });
 
 /*Функция создания карточки*/
@@ -64,8 +63,8 @@ function createCardElement(data) {
             handleCardClick: (link, name) => {
                 popupPhoto.open({ link, name });
             },
-            handleDeleteIconClick: () => {
-                popupWithConfirmation.open(card);
+            handleDeleteIconClick: (cardId, card) => {
+                popupWithConfirmation.open(cardId, card);
             },
             handleLikeClick: (cardId) => {
                 api.setLike(cardId)
@@ -93,13 +92,12 @@ function createCardElement(data) {
     return cardElement;
 }
 
-
-
 /*Редактирование аватара*/
 const popupNewAvatar = new PopupWithForm(".popup_type_avatar", {
     submitForm: (data) => {
-        loading(".popup_type_avatar", "Сохранение...");
-        api.setUserAvatar(data)
+        //popupNewAvatar.renderLoading(true, "Загрузка...");
+        return api
+            .setUserAvatar(data)
             .then((res) => {
                 userInfo.setUserInfo(res);
                 popupNewAvatar.close();
@@ -108,11 +106,10 @@ const popupNewAvatar = new PopupWithForm(".popup_type_avatar", {
                 console.log(`setUserAvatar - ошибка: ${err}`);
             })
             .finally(() => {
-                loading("Сохранить");
+                popupNewAvatar.renderLoading(false);
             });
     },
 });
-popupNewAvatar.setEventListeners();
 
 profileEditAvatar.addEventListener("click", () => {
     avatarValidator.toggleButtonValidity();
@@ -130,8 +127,9 @@ function renderCard(cardData) {
 /*Добавление новых карточек*/
 const popupAddCard = new PopupWithForm(".popup_type_card-add", {
     submitForm: (data) => {
-        loading(".popup__form_type_add", "Сохранение...");
-        api.addNewCard(data)
+        // popupAddCard.renderLoading(true, "Создание...");
+        return api
+            .addNewCard(data)
             .then((data) => {
                 popupAddCard.close();
                 section.addItem(createCardElement(data));
@@ -139,7 +137,7 @@ const popupAddCard = new PopupWithForm(".popup_type_card-add", {
 
             .catch((err) => console.log(`addNewCard - ошибка: ${err}`))
             .finally(() => {
-                loading("Сохранить");
+                popupAddCard.renderLoading(false, "Создано");
             });
     },
 });
@@ -159,8 +157,9 @@ const userInfo = new UserInfo({
 /*Редактирование профиля edit-button*/
 const popupEditProfile = new PopupWithForm(".popup_type_more-info", {
     submitForm: (data) => {
-        loading("Сохранение...");
-        api.setUserData(data)
+        //popupEditProfile.renderLoading(true, "Сохранение...");
+        return api
+            .setUserData(data)
             .then((data) => {
                 popupEditProfile.close();
                 userInfo.setUserInfo(data);
@@ -168,7 +167,7 @@ const popupEditProfile = new PopupWithForm(".popup_type_more-info", {
             .catch((err) => console.log(`setUserData - ошибка: ${err}`))
 
             .finally(() => {
-                loading("Сохранить");
+                popupEditProfile.renderLoading(false, "Сохранено");
             });
     },
 });
@@ -176,9 +175,7 @@ const popupEditProfile = new PopupWithForm(".popup_type_more-info", {
 buttonEditProfile.addEventListener("click", () => {
     //profileValidator.enableValidation();
 
-    const data = userInfo.getUserInfo();
-    nameEdit.value = data.name;
-    jobEdit.value = data.about;
+    popupEditProfile.setInputValues(userInfo.getUserInfo());
     popupEditProfile.open();
 });
 
@@ -190,3 +187,9 @@ const avatarValidator = new FormValidator(enableValidationConfig, popupAvatar);
 profileValidator.enableValidation();
 addCardValidator.enableValidation();
 avatarValidator.enableValidation();
+
+popupNewAvatar.setEventListeners();
+popupAddCard.setEventListeners();
+popupEditProfile.setEventListeners();
+popupWithConfirmation.setEventListeners();
+popupPhoto.setEventListeners();
